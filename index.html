@@ -108,8 +108,13 @@
   <footer id="footer"></footer>
 </div>
 
-<script src="data.js"></script>
-<script src="updated.js"></script>
+<script>
+  // Load data fresh every minute so a new weekly deploy is never mixed with stale cached data.
+  (function () {
+    var v = Math.floor(Date.now() / 60000);
+    document.write('<script src="data.js?v=' + v + '"><\/script><script src="updated.js?v=' + v + '"><\/script>');
+  })();
+</script>
 <script>
 (function () {
   var R = window.REPORT;
