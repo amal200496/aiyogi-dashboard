@@ -129,6 +129,28 @@ window.REPORT = {
     measure: "Replies kept (not removed), upvotes, and referral clicks once site analytics works."
   },
 
+  tracking: {
+    intro:
+      "Every link we post carries a short tag (a UTM) at the end of the web address. When someone clicks, the tag tells Google Analytics which post and channel sent them, so we can say which posts bring real visitors and which don't.",
+    example: "https://aiyogi.ai/?utm_source=x&utm_medium=organic&utm_campaign=2026-10-launch",
+    parts: [
+      { tag: "utm_source", means: "Where the click came from (x, linkedin, youtube, reddit, email)" },
+      { tag: "utm_medium", means: "The kind of traffic (organic post, creator, email)" },
+      { tag: "utm_campaign", means: "Which campaign or theme, by month (for example 2026-10-launch)" }
+    ],
+    links: [
+      { channel: "X", source: "x" },
+      { channel: "LinkedIn", source: "linkedin" },
+      { channel: "YouTube", source: "youtube" },
+      { channel: "Reddit", source: "reddit" },
+      { channel: "Email", source: "email" }
+    ],
+    status:
+      "Not yet readable on the website side: aiyogi.ai is not recording visits today, so the tags are in place but nothing will show until analytics is installed (see 'What we need from you').",
+    meanwhile:
+      "Until then we read clicks inside each platform: post analytics on X (link clicks) and the LinkedIn Page analytics tab (clicks). Those are reported weekly."
+  },
+
   okara: [
     { item: "Workspace for aiyogi.ai", status: "done" },
     { item: "Google Search Console", status: "done" },

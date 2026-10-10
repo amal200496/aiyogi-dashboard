@@ -206,6 +206,27 @@
     pg.appendChild(c);
   });
 
+  // Tracking
+  var T = R.tracking;
+  var sT = section("How we track traffic from posts", "Tracking tags (UTMs) on every link.");
+  var cT = el("div", "card");
+  cT.appendChild(el("p", null, T.intro));
+  var ex = el("div", "note", T.example); ex.style.cssText = "margin:14px 0;font-family:ui-monospace,Consolas,monospace;font-size:13px;overflow-wrap:anywhere";
+  cT.appendChild(ex);
+  var tbT = el("table");
+  T.parts.forEach(function (p) {
+    var tr = el("tr"), a = el("td"), b = el("td");
+    a.style.cssText = "font-family:ui-monospace,Consolas,monospace;font-size:13px;white-space:nowrap";
+    a.textContent = p.tag; b.textContent = p.means; add(tr, a, b); tbT.appendChild(tr);
+  });
+  cT.appendChild(tbT);
+  var cpT = el("div", "chips");
+  T.links.forEach(function (l) { cpT.appendChild(el("span", "chip", l.channel + " → utm_source=" + l.source)); });
+  cT.appendChild(cpT);
+  var st = el("p", null, T.status); st.style.marginTop = "14px"; cT.appendChild(st);
+  var mw = el("p", null, T.meanwhile); mw.style.marginTop = "8px"; cT.appendChild(mw);
+  sT.appendChild(cT);
+
   // Reddit
   var s6 = section("Reddit strategy", R.reddit.status);
   var c6 = el("div", "card"), u6 = el("ul");
