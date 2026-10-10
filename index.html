@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AIYogi Campaign Dashboard</title>
+<style>
+  :root {
+    --bg: #0b0b12;
+    --panel: #14141f;
+    --panel-2: #1b1b29;
+    --line: #2a2a3b;
+    --text: #ece9e1;
+    --muted: #a09db0;
+    --gold: #d6b25e;
+    --gold-soft: rgba(214, 178, 94, .14);
+    --green: #6cc08b;
+    --amber: #e3a74a;
+    --red: #e0736b;
+    --blue: #7fa6e0;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f3ec; --panel: #ffffff; --panel-2: #f0ece2; --line: #ddd7c8;
+    --text: #1d1b25; --muted: #5f5b6e; --gold: #8a6a1c; --gold-soft: rgba(138,106,28,.12);
+    --green: #2c7a4b; --amber: #9a6410; --red: #b3382f; --blue: #2d5fa8;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --bg: #f6f3ec; --panel: #ffffff; --panel-2: #f0ece2; --line: #ddd7c8;
+      --text: #1d1b25; --muted: #5f5b6e; --gold: #8a6a1c; --gold-soft: rgba(138,106,28,.12);
+      --green: #2c7a4b; --amber: #9a6410; --red: #b3382f; --blue: #2d5fa8;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px 64px; }
+  header { padding: 36px 0 20px; border-bottom: 1px solid var(--line); }
+  .eyebrow { color: var(--gold); letter-spacing: .14em; text-transform: uppercase; font-size: 12px; font-weight: 600; }
+  h1 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size: clamp(28px, 5vw, 42px); line-height: 1.15; margin: 8px 0 12px; }
+  h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; font-size: 24px; margin: 0 0 4px; }
+  h3 { font-size: 15px; margin: 0 0 6px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px 20px; color: var(--muted); font-size: 14px; }
+  .meta b { color: var(--text); font-weight: 600; }
+  .progress { margin-top: 18px; }
+  .bar { height: 8px; border-radius: 99px; background: var(--panel-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--gold); border-radius: 99px; }
+  .progress small { color: var(--muted); }
+  section { margin-top: 40px; }
+  .sub { color: var(--muted); margin: 0 0 16px; font-size: 14px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+  .summary { font-size: 18px; line-height: 1.55; border-left: 3px solid var(--gold); padding-left: 16px; margin: 24px 0 0; }
+  .grid { display: grid; gap: 12px; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 760px) { .g3, .g2 { grid-template-columns: 1fr; } }
+  @media (min-width: 761px) and (max-width: 940px) { .g3 { grid-template-columns: repeat(2, 1fr); } }
+  .metric .v { font-family: Georgia, serif; font-size: 30px; line-height: 1.1; color: var(--gold); }
+  .metric .l { font-size: 14px; margin-top: 6px; }
+  .metric .n { font-size: 13px; color: var(--muted); }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 9px; border-radius: 99px; border: 1px solid currentColor; vertical-align: middle; }
+  .t-high { color: var(--red); } .t-medium { color: var(--amber); }
+  .t-done { color: var(--green); } .t-progress { color: var(--blue); } .t-todo { color: var(--muted); } .t-blocked { color: var(--red); }
+  .action { display: grid; gap: 6px; }
+  .action p, .card p { margin: 0; color: var(--muted); font-size: 15px; }
+  .row { display: flex; gap: 10px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; }
+  ul.clean { list-style: none; margin: 0; padding: 0; }
+  ul.clean li { padding: 10px 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 78px 1fr; gap: 12px; }
+  ul.clean li:last-child { border-bottom: 0; }
+  ul.clean .w { color: var(--gold); font-size: 13px; font-weight: 600; padding-top: 2px; }
+  .days { display: grid; gap: 10px; }
+  .day { display: grid; grid-template-columns: 84px 1fr; gap: 12px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+  .day .d { color: var(--gold); font-weight: 600; }
+  .day ul { margin: 0; padding-left: 18px; }
+  .post { padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+  .post:last-child { border-bottom: 0; }
+  .note { background: var(--gold-soft); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  td { padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td.s { width: 112px; white-space: nowrap; }
+  td .n { display: block; color: var(--muted); font-size: 13px; }
+  ol.steps { margin: 8px 0 0; padding-left: 20px; color: var(--muted); }
+  ol.steps li { margin: 4px 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .chip { background: var(--panel-2); border: 1px solid var(--line); border-radius: 99px; padding: 3px 12px; font-size: 14px; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  a { color: var(--gold); }
+  .theme { float: right; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 6px 12px; font: inherit; font-size: 13px; cursor: pointer; }
+  .noscript { padding: 24px 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <button class="theme" id="theme" type="button" aria-label="Toggle light or dark">Light / dark</button>
+    <div class="eyebrow">AIYogi · Campaign dashboard</div>
+    <h1 id="title">AIYogi Growth Campaign</h1>
+    <div class="meta" id="meta"></div>
+    <div class="progress" id="progress"></div>
+  </header>
+  <noscript><p class="noscript">This dashboard needs JavaScript to display.</p></noscript>
+  <main id="app"></main>
+  <footer id="footer"></footer>
+</div>
+
+<script src="data.js"></script>
+<script src="updated.js"></script>
+<script>
+(function () {
+  var R = window.REPORT;
+  var TZ = "America/New_York"; // Florida
+  var $ = function (id) { return document.getElementById(id); };
+
+  function el(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text != null) e.textContent = text;
+    return e;
+  }
+  function add(parent) { for (var i = 1; i < arguments.length; i++) parent.appendChild(arguments[i]); return parent; }
+
+  function fmt(d, opts) { return new Intl.DateTimeFormat("en-US", Object.assign({ timeZone: TZ }, opts)).format(d); }
+  function floridaStamp(d) {
+    return fmt(d, { weekday: "long", month: "short", day: "numeric", year: "numeric" }) + ", " +
+           fmt(d, { hour: "numeric", minute: "2-digit" }) + " " + fmt(d, { timeZoneName: "short" }).split(" ").pop() + " (Florida)";
+  }
+  function nextRefresh(now) {
+    var s = R.schedule.cronUtc, d = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), s.hour, s.minute));
+    while (d.getUTCDay() !== s.weekday || d <= now) d = new Date(d.getTime() + 86400000);
+    return d;
+  }
+
+  var now = new Date();
+  var updated = new Date(window.LAST_UPDATED);
+  var start = new Date(R.campaign.start + "T00:00:00Z"), end = new Date(R.campaign.end + "T00:00:00Z");
+  var weekNo = Math.min(R.campaign.totalWeeks, Math.max(1, Math.floor((now - start) / 604800000) + 1));
+  var pct = Math.max(0, Math.min(100, ((now - start) / (end - start)) * 100));
+
+  $("title").textContent = R.campaign.name;
+  var meta = $("meta");
+  [["Prepared for", R.owner], ["Report", R.reportWeekLabel], ["Last updated", floridaStamp(updated)], ["Next update", floridaStamp(nextRefresh(now))]]
+    .forEach(function (m) {
+      var s = el("span"); add(s, document.createTextNode(m[0] + ": "), el("b", null, m[1])); meta.appendChild(s);
+    });
+  var prog = $("progress");
+  var bar = el("div", "bar"), fill = el("i"); fill.style.width = pct.toFixed(1) + "%"; bar.appendChild(fill);
+  add(prog, bar, el("small", null, "Week " + weekNo + " of " + R.campaign.totalWeeks + " · " + fmt(start, { month: "short", day: "numeric", timeZone: "UTC" }) + " to " + fmt(end, { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })));
+
+  var app = $("app");
+
+  function section(title, sub) {
+    var s = el("section"); add(s, el("h2", null, title));
+    if (sub) s.appendChild(el("p", "sub", sub));
+    app.appendChild(s); return s;
+  }
+
+  // Summary
+  var sumS = el("section"); sumS.appendChild(el("p", "summary", R.summary)); app.appendChild(sumS);
+
+  // Actions
+  var s1 = section("What we need from you", "Items that are holding work back, most urgent first.");
+  var g = el("div", "grid"); s1.appendChild(g);
+  R.actions.forEach(function (a) {
+    var c = el("div", "card action"), r = el("div", "row");
+    add(r, el("h3", null, a.title), el("span", "tag t-" + a.priority, a.priority === "high" ? "Urgent" : "Soon"));
+    add(c, r, el("p", null, a.detail));
+    g.appendChild(c);
+  });
+
+  // Metrics
+  var s2 = section("Numbers so far", "Day-one baseline. Real movement starts once posts and search content build up.");
+  var mg = el("div", "grid g3"); s2.appendChild(mg);
+  R.metrics.forEach(function (m) {
+    var c = el("div", "card metric"); add(c, el("div", "v", m.value), el("div", "l", m.label), el("div", "n", m.note)); mg.appendChild(c);
+  });
+  s2.appendChild(el("p", "sub", R.metricsNote)).style.marginTop = "12px";
+
+  // Achieved
+  var s3 = section("What we achieved", "Everything completed since kickoff.");
+  var c3 = el("div", "card"), ul = el("ul", "clean");
+  R.achieved.forEach(function (a) { var li = el("li"); add(li, el("span", "w", a.when), el("span", null, a.text)); ul.appendChild(li); });
+  c3.appendChild(ul); s3.appendChild(c3);
+
+  // Next week
+  var s4 = section("Next week's action plan", R.weekPlan.label);
+  var dg = el("div", "days"); s4.appendChild(dg);
+  R.weekPlan.days.forEach(function (d) {
+    var row = el("div", "day"), u = el("ul");
+    d.items.forEach(function (i) { u.appendChild(el("li", null, i)); });
+    add(row, el("div", "d", d.day), u); dg.appendChild(row);
+  });
+  s4.appendChild(el("div", "note", R.weekPlan.dependsOn)).style.marginTop = "12px";
+
+  // Posts
+  var s5 = section("Posts planned for next week", R.posts.note);
+  var pg = el("div", "grid g2"); s5.appendChild(pg);
+  [["X · 7 posts", R.posts.x], ["LinkedIn · 3 posts", R.posts.linkedin]].forEach(function (p) {
+    var c = el("div", "card"), r = el("div", "row");
+    add(r, el("h3", null, p[0]), el("span", "tag t-medium", R.posts.status)); c.appendChild(r);
+    p[1].forEach(function (t) { c.appendChild(el("div", "post", t)); });
+    pg.appendChild(c);
+  });
+
+  // Reddit
+  var s6 = section("Reddit strategy", R.reddit.status);
+  var c6 = el("div", "card"), u6 = el("ul");
+  u6.style.margin = "0"; u6.style.paddingLeft = "18px";
+  R.reddit.principles.forEach(function (p) { var li = el("li", null, p); li.style.margin = "6px 0"; u6.appendChild(li); });
+  var chips = el("div", "chips"); R.reddit.communities.forEach(function (n) { chips.appendChild(el("span", "chip", n)); });
+  add(c6, u6, el("p", "sub", "Communities we will start in"), chips, el("p", "sub", "How we measure: " + R.reddit.measure));
+  c6.lastChild.style.marginTop = "14px"; chips.previousSibling.style.marginTop = "14px";
+  s6.appendChild(c6);
+
+  // Okara
+  var s7 = section("Marketing engine (Okara) set-up", "Status of each part of the workspace.");
+  var c7 = el("div", "card"), tb = el("table"), labels = { done: "Done", progress: "In progress", todo: "To do", blocked: "Blocked" };
+  R.okara.forEach(function (o) {
+    var tr = el("tr"), td1 = el("td"), td2 = el("td", "s");
+    td1.textContent = o.item; if (o.note) td1.appendChild(el("span", "n", o.note));
+    td2.appendChild(el("span", "tag t-" + o.status, labels[o.status]));
+    add(tr, td1, td2); tb.appendChild(tr);
+  });
+  c7.appendChild(tb); s7.appendChild(c7);
+
+  // YouTube
+  var s8 = section("YouTube and thumbnails", R.youtube.status);
+  var c8 = el("div", "card"), ol = el("ol", "steps");
+  R.youtube.plan.forEach(function (p) { ol.appendChild(el("li", null, p)); });
+  c8.appendChild(ol); s8.appendChild(c8);
+
+  // Footer
+  var f = $("footer");
+  add(f, el("p", null, R.schedule.note + " Last refresh: " + floridaStamp(updated) + "."));
+  var p2 = el("p"); add(p2, document.createTextNode("Questions: "), (function () { var a = el("a", null, R.contact); a.href = "mailto:" + R.contact; return a; })());
+  f.appendChild(p2);
+
+  // Theme toggle
+  var root = document.documentElement;
+  try { var saved = localStorage.getItem("theme"); if (saved) root.setAttribute("data-theme", saved); } catch (e) {}
+  $("theme").addEventListener("click", function () {
+    var cur = root.getAttribute("data-theme");
+    var isLight = cur ? cur === "light" : window.matchMedia("(prefers-color-scheme: light)").matches;
+    var next = isLight ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
+</script>
+</body>
+</html>
