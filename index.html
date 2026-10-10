@@ -273,7 +273,7 @@
       h("span", null, ["Next ", h("b", { text: stamp(nextRefresh(now)) })]),
       h("span", { text: "Florida time" })
     ]),
-    h("h1", { text: "Week " + weekNo + " of " + R.campaign.totalWeeks + ": " + urgent + " items need your input" }),
+    h("h1", { text: "Week " + weekNo + " of " + R.campaign.totalWeeks + (urgent === 0 ? ": nothing needed from you" : urgent === 1 ? ": 1 item needs your input" : ": " + urgent + " items need your input") }),
     h("p", { class: "lede", text: R.summary })
   ]);
   var weeks = h("div", { class: "weeks", role: "img", "aria-label": "Campaign progress, week " + weekNo + " of " + R.campaign.totalWeeks });
@@ -283,7 +283,7 @@
   app.appendChild(top);
 
   /* Needed from you */
-  var s1 = section("needed", "Needed from you", "These are holding work back. Most urgent first.");
+  var s1 = section("needed", "Needed from you", R.actions.length === 1 ? "This is the only thing we need from you. Everything else is handled by our team." : "These are holding work back. Most urgent first.");
   var l1 = h("ol", { class: "rows" });
   R.actions.forEach(function (a) {
     l1.appendChild(h("li", { class: "need" }, [
@@ -322,8 +322,16 @@
   s4.appendChild(l4);
   s4.appendChild(h("div", { class: "callout", text: R.weekPlan.dependsOn }));
 
+  /* Expectations */
+  var E = R.expect;
+  var sE = section("expect", "What to expect next week", "What you will see, what you will not, and how we work with you.");
+  [["You will see", E.see], ["Not yet", E.notYet], ["How we work", E.how]].forEach(function (g) {
+    sE.appendChild(h("div", { class: "group", text: g[0] }));
+    var l = h("ul", { class: "rows" }); g[1].forEach(function (t) { l.appendChild(h("li", { text: t })); }); sE.appendChild(l);
+  });
+
   /* Posts */
-  var s5 = section("posts", "Posts for approval", R.posts.note);
+  var s5 = section("posts", "Posts for next week", R.posts.note);
   var cols = h("div", { class: "cols" });
   [["X", R.posts.x, 280], ["LinkedIn", R.posts.linkedin, 3000]].forEach(function (p) {
     var col = h("div", null, [h("div", { class: "col-head" }, [h("h3", { text: p[0] + " · " + p[1].length + " posts" }), h("span", { class: "st progress", text: R.posts.status })])]);
@@ -359,18 +367,29 @@
   s7.appendChild(h("p", { text: "How we measure: " + R.reddit.measure, style: "margin:16px 0 0;color:var(--muted);max-width:66ch" }));
 
   /* Okara */
-  var s8 = section("okara", "Marketing engine set-up", "Status of each part of the Okara workspace.");
-  var labels = { done: "Done", progress: "In progress", todo: "To do", blocked: "Blocked" };
-  var t8 = h("table");
-  R.okara.forEach(function (o) {
-    t8.appendChild(h("tr", null, [h("td", null, [o.item, o.note ? h("span", { class: "n", text: o.note }) : null]), h("td", { class: "v" }, [h("span", { class: "st " + o.status, text: labels[o.status] })])]));
+  var s8 = section("okara", "Connected to Okara", "Everything that is connected, what we connect next, and what Okara cannot connect.");
+  R.connections.forEach(function (g) {
+    s8.appendChild(h("div", { class: "group" }, [h("span", { class: "st " + g.state, text: g.group })]));
+    var t = h("table");
+    g.items.forEach(function (o) { t.appendChild(h("tr", null, [h("td", null, [o.item, o.note ? h("span", { class: "n", text: o.note }) : null])])); });
+    s8.appendChild(t);
   });
-  s8.appendChild(t8);
 
   /* YouTube */
   var s9 = section("youtube", "YouTube and thumbnails", R.youtube.status);
   var ol9 = h("ol", { class: "steps" }); R.youtube.plan.forEach(function (p) { ol9.appendChild(h("li", { text: p })); });
   s9.appendChild(ol9);
+
+  /* Working agreement */
+  var A = R.agreement;
+  var sA = section("agreement", "Working agreement", A.note);
+  sA.appendChild(h("p", { text: A.hours, style: "margin:0 0 16px;font-size:1.0625rem;font-weight:600" }));
+  var tA = h("table");
+  A.allocation.forEach(function (a) { tA.appendChild(h("tr", null, [h("td", { text: a[0] }), h("td", { class: "v", text: a[1] })])); });
+  sA.appendChild(tA);
+  sA.appendChild(h("div", { class: "group", text: "Not included" }));
+  var lA = h("ul", { class: "rows" }); A.out.forEach(function (t) { lA.appendChild(h("li", { text: t })); }); sA.appendChild(lA);
+  sA.appendChild(h("p", { text: A.change, style: "margin:16px 0 0;color:var(--muted);max-width:66ch" }));
 
   /* Footer + rail */
   var mail = function () { var a = h("a", { href: "mailto:" + R.contact, text: R.contact }); return a; };
