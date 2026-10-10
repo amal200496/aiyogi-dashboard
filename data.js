@@ -3,10 +3,10 @@ window.REPORT = {
   owner: "Wake",
   campaign: { name: "AIYogi Growth Campaign", start: "2026-10-01", end: "2027-01-31", totalWeeks: 17 },
   contact: "marketing.aiyogi@proton.me",
-  reportWeekLabel: "Week 2 report · covers 1 Oct – 10 Oct 2026",
+  reportWeekLabel: "Covers 1-10 Oct 2026",
 
   summary:
-    "Foundation week is done. Our marketing engine (Okara) is set up for AIYogi, the X and LinkedIn profiles are live, and the first launch post is published on each. One thing needs you: ownership of the new YouTube channel. Everything else is handled by our team.",
+    "Setup is done and the first posts are live on X and LinkedIn. We need ownership of the new YouTube channel. Everything else is handled by our team.",
 
   actions: [
     {
@@ -20,7 +20,7 @@ window.REPORT = {
   ],
 
   achieved: [
-    { when: "Week 1", text: "4-month campaign plan, scope and working agreement written (1 Oct – 31 Jan)." },
+    { when: "Week 1", text: "4-month campaign plan, scope and working agreement written (1 Oct to 31 Jan)." },
     { when: "Week 1", text: "Site audit: found that aiyogi.ai loads mostly through JavaScript, so Google and AI assistants may see little of it, and that visits are not being recorded." },
     { when: "Week 1", text: "Okara AI marketing workspace created for AIYogi, with its data encrypted. Google Search Console is already connected." },
     { when: "Week 1", text: "Dedicated marketing email created: marketing.aiyogi@proton.me." },
@@ -34,18 +34,16 @@ window.REPORT = {
   ],
 
   metrics: [
-    { label: "X posts published", value: "1", note: "@aiyogi_ai" },
-    { label: "LinkedIn posts published", value: "1", note: "AIYogi Page" },
-    { label: "Followers (X / LinkedIn)", value: "0 / 0", note: "Day 1 baseline" },
-    { label: "Google impressions (7 days)", value: "51", note: "from Search Console" },
-    { label: "Google clicks (7 days)", value: "5", note: "9.8% click rate" },
-    { label: "Visits recorded on site", value: "Not tracked", note: "we are setting up analytics" }
+    { label: "Posts published", value: "2", note: "1 on X, 1 on LinkedIn" },
+    { label: "Followers", value: "0", note: "Starting point for both accounts" },
+    { label: "Google search, last 7 days", value: "51 views, 5 clicks", note: "From Search Console" },
+    { label: "Visits to aiyogi.ai", value: "Not tracked yet", note: "We are setting up analytics" }
   ],
   metricsNote:
     "Link clicks on X and LinkedIn can be read inside each platform's post analytics. Visits on aiyogi.ai cannot be counted until site analytics is connected.",
 
   weekPlan: {
-    label: "Next week · 12 – 18 Oct 2026",
+    label: "12-18 Oct 2026",
     days: [
       { day: "Mon 12", items: ["X post 1 and LinkedIn post 1 go live", "Rewrite Okara workspace description and Brand Voice to enforce the safety rules"] },
       { day: "Tue 13", items: ["X post 2", "Finish Okara Article agent: review and approve content pillars"] },
@@ -124,7 +122,7 @@ window.REPORT = {
     status: "Account not yet created. We will create it with the marketing email.",
     principles: [
       "One clearly branded team account. Affiliation disclosed in every thread.",
-      "Weeks 1–2: comment helpfully with no links, to build standing.",
+      "Weeks 1-2: comment helpfully with no links, to build standing.",
       "Weeks 3 onward: about 5 thoughtful replies per week, one link per ten replies at most, and only where it answers the question.",
       "Read each community's rules first. If a community bans brand accounts, we stay out.",
       "Never reply on sensitive threads (trauma, addiction, self-harm, sexual topics). Okara's automatic matches are reviewed by a person before anything is posted."
@@ -148,12 +146,12 @@ window.REPORT = {
       group: "Connecting next (our team)",
       state: "progress",
       items: [
-        { item: "Brand Voice and safety rules", note: "Rewrite so every agent follows the content rules · Mon 12 Oct" },
-        { item: "Article agent", note: "Review content pillars and approve · Tue 13 Oct" },
-        { item: "Reddit agent", note: "Starts once the Reddit account exists. Okara finds threads and drafts replies; a person posts them · Wed 14 Oct" },
-        { item: "Google Analytics (GA4)", note: "Needs a tracking tag on aiyogi.ai first. We will set up and verify it · Week 3" },
-        { item: "Article publishing destination", note: "Articles are drafted in Okara; we choose and connect where they publish · Week 3" },
-        { item: "GitHub (site fixes)", note: "Lets Okara's coding agent hand over SEO fixes as ready-to-apply changes · Week 3" }
+        { item: "Brand Voice and safety rules", note: "Rewrite so every agent follows the content rules", when: "Mon 12 Oct" },
+        { item: "Article agent", note: "Review content pillars and approve", when: "Tue 13 Oct" },
+        { item: "Reddit agent", note: "Starts once the Reddit account exists. Okara finds threads and drafts replies; a person posts them", when: "Wed 14 Oct" },
+        { item: "Google Analytics (GA4)", note: "Needs a tracking tag on aiyogi.ai first. We will set up and verify it", when: "Week 3" },
+        { item: "Article publishing destination", note: "Articles are drafted in Okara; we choose and connect where they publish", when: "Week 3" },
+        { item: "GitHub (site fixes)", note: "Lets Okara's coding agent hand over SEO fixes as ready-to-apply changes", when: "Week 3" }
       ]
     },
     {
