@@ -195,8 +195,8 @@
   var app = $("app");
 
   /* Header */
-  app.appendChild(h("p", { class: "meta", text: "For " + R.owner + ". Updated " + stamp(updated) + ", Florida time. Next update " + stamp(nextRefresh(now)) + "." }));
-  app.appendChild(h("h1", { text: "Week " + weekNo + " of " + R.campaign.totalWeeks + (asks === 0 ? ": nothing needed from you" : asks === 1 ? ": 1 item needs you" : ": " + asks + " items need you") }));
+  app.appendChild(h("p", { class: "meta", text: "Hi " + R.owner + ". Last updated " + stamp(updated) + " (Florida time). The next update is " + stamp(nextRefresh(now)) + "." }));
+  app.appendChild(h("h1", { text: "Week " + weekNo + " of " + R.campaign.totalWeeks + (asks === 0 ? ". Nothing needed from you." : asks === 1 ? ". One thing we need from you." : ". " + asks + " things we need from you.") }));
   app.appendChild(h("p", { class: "lede", text: R.summary }));
   var weeks = h("div", { class: "weeks", role: "img", "aria-label": "Campaign progress, week " + weekNo + " of " + R.campaign.totalWeeks });
   for (var i = 1; i <= R.campaign.totalWeeks; i++) weeks.appendChild(h("i", { class: i < weekNo ? "done" : i === weekNo ? "now" : "" }));
@@ -207,23 +207,23 @@
 
   /* Needs you */
   if (asks) {
-    var s1 = section("Needs you");
+    var s1 = section("What we need from you");
     R.actions.forEach(function (a) { s1.appendChild(h("div", { class: "ask" }, [h("h3", { text: a.title }), h("p", { text: a.detail })])); });
   }
 
   /* Numbers */
-  var s2 = section("Numbers so far");
+  var s2 = section("Where things stand");
   var d2 = h("div"); R.metrics.forEach(function (m) { d2.appendChild(h("div", { class: "row" }, [h("span", { class: "k" }, [m.label, h("span", { class: "n", text: m.note })]), h("span", { class: "v", text: m.value })])); });
   s2.appendChild(d2);
 
   /* Next week */
-  var s3 = section("Next week, " + R.weekPlan.label);
+  var s3 = section(R.weekPlan.label);
   var d3 = h("div"); R.weekPlan.days.forEach(function (d) { d3.appendChild(h("div", { class: "day" }, [h("b", { text: d.day }), h("ul", null, d.items.map(function (t) { return h("li", { text: t }); }))])); });
   s3.appendChild(d3);
   s3.appendChild(h("p", { class: "muted small", text: R.weekPlan.dependsOn, style: "margin-top:16px" }));
 
   /* Okara connections */
-  var s4 = section("Connected to Okara");
+  var s4 = section("What's connected to Okara");
   R.connections.forEach(function (g) {
     s4.appendChild(h("div", { class: "group", text: g.group }));
     var d = h("div"); g.items.forEach(function (o) {
@@ -233,18 +233,18 @@
   });
 
   /* Done so far */
-  var s5 = section("Done so far");
+  var s5 = section("What we've done");
   var rev = R.achieved.slice().reverse(), shown = rev.slice(0, 4), rest = rev.slice(4);
   s5.appendChild(list(shown.map(function (a) { return a.text; })));
   if (rest.length) s5.appendChild(h("div", { class: "folds", style: "margin-top:12px" }, [fold("Earlier", rest.length + " more", [list(rest.map(function (a) { return a.text; }))])]));
 
   /* Folded detail */
-  var s6 = section("More detail");
+  var s6 = section("The detail, if you want it");
   var folds = h("div", { class: "folds" }); s6.appendChild(folds);
 
   var E = R.expect;
-  folds.appendChild(fold("What to expect next week", null, [
-    h("div", { class: "group", text: "You will see" }), bullets(E.see),
+  folds.appendChild(fold("What to expect this week", null, [
+    h("div", { class: "group", text: "You'll see" }), bullets(E.see),
     h("div", { class: "group", text: "Not yet" }), bullets(E.notYet),
     h("div", { class: "group", text: "How we work" }), bullets(E.how)
   ]));
@@ -259,21 +259,21 @@
     });
     xBody.push(wrap);
   });
-  folds.appendChild(fold("Posts for next week", "7 on X, 3 on LinkedIn", xBody));
+  folds.appendChild(fold("This week's posts", "7 on X, 3 on LinkedIn", xBody));
 
   var T = R.tracking, u = T.example.split("?"), q = u[1].split("&"), url = h("div", { class: "url" }, [u[0] + "?"]);
   q.forEach(function (kv, idx) { var p = kv.split("="); url.appendChild(document.createTextNode(p[0] + "=")); url.appendChild(h("span", { class: "val", text: p[1] })); if (idx < q.length - 1) url.appendChild(document.createTextNode("&")); });
-  folds.appendChild(fold("How we track clicks", null, [
+  folds.appendChild(fold("How we'll know who clicked", null, [
     h("p", { text: T.intro }), url,
     h("div", null, T.parts.map(function (p) { return h("div", { class: "row" }, [h("span", { class: "k", style: "font-family:var(--mono);font-size:0.8125rem", text: p.tag }), h("span", { class: "w", style: "white-space:normal;max-width:60%", text: p.means })]); })),
     h("p", { class: "muted small", text: T.status }),
     h("p", { class: "muted small", text: T.meanwhile })
   ]));
 
-  folds.appendChild(fold("Reddit plan", null, [
+  folds.appendChild(fold("How we'll handle Reddit", null, [
     h("p", { class: "muted small", text: R.reddit.status }), bullets(R.reddit.principles),
-    h("p", { class: "small", text: "Communities: " + R.reddit.communities.join(", ") }),
-    h("p", { class: "muted small", text: "How we measure: " + R.reddit.measure })
+    h("p", { class: "small", text: "Where we'll start: " + R.reddit.communities.join(", ") }),
+    h("p", { class: "muted small", text: "How we'll measure it: " + R.reddit.measure })
   ]));
 
   var ol = h("ol", { class: "bullets" }); R.youtube.plan.forEach(function (t) { ol.appendChild(h("li", { text: t })); });
@@ -281,7 +281,7 @@
 
   var A = R.agreement, al = h("div");
   A.allocation.forEach(function (a) { al.appendChild(h("div", { class: "row" }, [h("span", { class: "k", text: a[0] }), h("span", { class: "v", text: a[1] })])); });
-  folds.appendChild(fold("Working agreement", A.hours, [
+  folds.appendChild(fold("How we work together", A.hours, [
     h("p", { class: "muted small", text: A.note }), al,
     h("div", { class: "group", text: "Not included" }), bullets(A.out),
     h("p", { class: "muted small", text: A.change })
@@ -289,7 +289,7 @@
 
   /* Footer */
   var a = h("a", { href: "mailto:" + R.contact, text: R.contact });
-  $("footer").appendChild(h("span", null, ["Questions: ", a]));
+  $("footer").appendChild(h("span", null, ["Questions? ", a]));
   $("footer").appendChild(h("span", { text: R.schedule.note }));
 
   /* Theme */

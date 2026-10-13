@@ -6,79 +6,79 @@ window.REPORT = {
   reportWeekLabel: "Covers 1-10 Oct 2026",
 
   summary:
-    "Setup is done and the first posts are live on X and LinkedIn. We need ownership of the new YouTube channel. Everything else is handled by our team.",
+    "The groundwork is done and our first posts are live on X and LinkedIn. Everything else is on our side. The one thing that needs you is below.",
 
   actions: [
     {
       id: "youtube",
       priority: "high",
-      title: "Grant ownership of the new YouTube channel",
+      title: "Give us ownership of the new YouTube channel",
       detail:
-        "In YouTube Studio go to Settings → Permissions → Invite and add marketing.aiyogi@proton.me as Owner (or Manager if Owner is not offered). Thumbnails for all videos start as soon as access arrives.",
+        "In YouTube Studio, open Settings, then Permissions, then Invite, and add marketing.aiyogi@proton.me as Owner (Manager works if Owner isn't offered). New thumbnails start the day access arrives.",
       owner: "Wake"
     }
   ],
 
   achieved: [
-    { when: "Week 1", text: "4-month campaign plan, scope and working agreement written (1 Oct to 31 Jan)." },
-    { when: "Week 1", text: "Site audit: found that aiyogi.ai loads mostly through JavaScript, so Google and AI assistants may see little of it, and that visits are not being recorded." },
-    { when: "Week 1", text: "Okara AI marketing workspace created for AIYogi, with its data encrypted. Google Search Console is already connected." },
-    { when: "Week 1", text: "Dedicated marketing email created: marketing.aiyogi@proton.me." },
-    { when: "Week 1", text: "X account @aiyogi_ai created with profile photo and bio, connected to Okara." },
-    { when: "Week 1", text: "LinkedIn company Page 'AIYogi' created (logo, tagline, About text, website link) and connected to Okara." },
-    { when: "Week 1", text: "Profile kit written: bios for X, LinkedIn, YouTube, Reddit, Instagram and TikTok, tracked links, image briefs." },
-    { when: "Week 2", text: "Launch posts published on X and LinkedIn." },
-    { when: "Week 2", text: "Okara prepared a first pool of work: 51 X ideas, 48 LinkedIn posts, 51 article topics, 96 Reddit opportunities, 85 SEO fixes and 6 gaps where AI assistants cite competitors instead of AIYogi. One article draft exists. Nothing from this pool is published without review." },
-    { when: "Week 2", text: "Content safety rules set: no health or therapy claims, no implied endorsement by living teachers, no invented testimonials. Okara's first drafts broke these rules and were held back." },
-    { when: "Week 2", text: "This client dashboard published, refreshed every Saturday at 12:00 am IST." }
+    { when: "Week 1", text: "Wrote the 4-month plan and our working agreement (1 Oct to 31 Jan)." },
+    { when: "Week 1", text: "Audited aiyogi.ai. Two findings: the site loads mostly through JavaScript, so Google and AI assistants may see very little of it, and it isn't recording visits." },
+    { when: "Week 1", text: "Set up Okara, our AI marketing tool, for AIYogi. Your data is encrypted and Search Console is already connected." },
+    { when: "Week 1", text: "Created marketing.aiyogi@proton.me as the team's email." },
+    { when: "Week 1", text: "Set up @aiyogi_ai on X with a photo and bio, and connected it to Okara." },
+    { when: "Week 1", text: "Set up the AIYogi LinkedIn Page with logo, tagline, About text and website link, and connected it to Okara." },
+    { when: "Week 1", text: "Wrote bios for X, LinkedIn, YouTube, Reddit, Instagram and TikTok, plus tracked links and image briefs." },
+    { when: "Week 2", text: "Published our first posts on X and LinkedIn." },
+    { when: "Week 2", text: "Okara drafted a first batch: 51 X ideas, 48 LinkedIn posts, 51 article topics, 96 Reddit opportunities and 85 site fixes. Nothing goes out without our review." },
+    { when: "Week 2", text: "Set our content rules: no health or therapy claims, no implied endorsement by living teachers, no invented testimonials. Okara's first drafts broke them, so we held those back." },
+    { when: "Week 2", text: "Published this dashboard. It refreshes every Saturday at 12:00 am IST." }
   ],
 
   metrics: [
     { label: "Posts published", value: "2", note: "1 on X, 1 on LinkedIn" },
-    { label: "Followers", value: "0", note: "Starting point for both accounts" },
+    { label: "Followers", value: "0", note: "Our starting point on both accounts" },
     { label: "Google search, last 7 days", value: "51 views, 5 clicks", note: "From Search Console" },
-    { label: "Visits to aiyogi.ai", value: "Not tracked yet", note: "We are setting up analytics" }
+    { label: "Visits to aiyogi.ai", value: "Not tracked yet", note: "We're fixing this" }
   ],
   metricsNote:
-    "Link clicks on X and LinkedIn can be read inside each platform's post analytics. Visits on aiyogi.ai cannot be counted until site analytics is connected.",
+    "Link clicks show up in X's and LinkedIn's own post stats. We can't count visits to aiyogi.ai until site analytics is connected.",
 
   weekPlan: {
-    label: "12-18 Oct 2026",
+    label: "The week of 12 Oct",
     days: [
-      { day: "Mon 12", items: ["X post 1 and LinkedIn post 1 go live", "Rewrite Okara workspace description and Brand Voice to enforce the safety rules"] },
-      { day: "Tue 13", items: ["X post 2", "Finish Okara Article agent: review and approve content pillars"] },
-      { day: "Wed 14", items: ["X post 3 and LinkedIn post 2", "Reddit account created; warm-up begins (no links)"] },
-      { day: "Thu 15", items: ["X post 4", "Prepare ready-to-apply fixes for the three highest-impact page headings Okara flagged"] },
-      { day: "Fri 16", items: ["X post 5 and LinkedIn post 3", "Weekly report built and published"] },
-      { day: "Sat 17", items: ["X post 6", "Dashboard refreshes at 12:00 am IST (Fri 2:30 pm Florida time)"] },
-      { day: "Sun 18", items: ["X post 7", "Review link clicks from the week's posts"] }
+      { day: "Mon 12", items: ["Our first X and LinkedIn posts of the week go out", "Rewrite Okara's brand voice so every draft follows our content rules"] },
+      { day: "Tue 13", items: ["X post 2", "Finish setting up Okara's article writer and approve its topics"] },
+      { day: "Wed 14", items: ["X post 3 and LinkedIn post 2", "Create our Reddit account and start listening, with no links yet"] },
+      { day: "Thu 15", items: ["X post 4", "Prepare fixes for the three page headings Okara flagged as most important"] },
+      { day: "Fri 16", items: ["X post 5 and LinkedIn post 3", "Send the weekly report"] },
+      { day: "Sat 17", items: ["X post 6", "This dashboard refreshes at 12:00 am IST (Friday 2:30 pm in Florida)"] },
+      { day: "Sun 18", items: ["X post 7", "Check how many people clicked this week's links"] }
     ],
-    dependsOn: "Waiting on you: ownership of the new YouTube channel, so thumbnails can start. Everything else in this plan runs without anything from you."
+    dependsOn: "The only thing waiting on you is YouTube access. Everything else in this plan runs without anything from you."
   },
 
   expect: {
     see: [
-      "7 X posts and 3 LinkedIn posts published, Monday to Sunday.",
-      "The Okara workspace rewritten so every agent follows the content rules.",
-      "Article content pillars approved, and the first article ready to publish.",
-      "A Reddit account live and warming up, with no promotional links.",
-      "A Friday report and a refreshed dashboard (Fri 2:30 pm Florida time)."
+      "7 posts on X and 3 on LinkedIn, spread through the week.",
+      "Okara's brand voice rewritten, so every draft follows our content rules.",
+      "Article topics approved, and the first article ready to publish.",
+      "A Reddit account, quietly warming up with no promotional links.",
+      "A weekly report and a refreshed dashboard on Friday afternoon, Florida time."
     ],
     notYet: [
-      "No traffic spike. Month 1 is foundation work, and search growth shows from December.",
-      "No ranking or revenue promises. Early signals are post clicks, followers and how Reddit receives us.",
-      "No visit numbers from aiyogi.ai until site analytics is connected.",
-      "No YouTube thumbnails until channel ownership is granted."
+      "A jump in traffic. This month is groundwork, and search results start showing from December.",
+      "Promises about rankings or revenue. Early signs are post clicks, followers and how Reddit receives us.",
+      "Visit numbers for aiyogi.ai. We need analytics connected first.",
+      "New YouTube thumbnails. Those begin once we have channel ownership."
     ],
     how: [
-      "We reply to messages within 1 business day.",
-      "Routine posts and replies follow the agreed content rules and go out without waiting on you. Ask us to change or pull anything, any time.",
-      "Anything new asks you first: new claims, teacher names, pricing, health topics, partnerships or paid spend."
+      "Message us any time. We reply within one business day.",
+      "Routine posts and replies follow the content rules we agreed, so they go out without waiting for you. Ask us to change or pull anything, whenever you like.",
+      "Anything new, we ask first: new claims, teacher names, pricing, health topics, partnerships or spending."
     ]
   },
 
   posts: {
-    note: "Going forward we ship 7 X posts and 3 LinkedIn posts every week. All copy follows the safety rules and uses 'inspired by' wording.",
+    note: "Every week: 7 posts on X and 3 on LinkedIn. All of it uses 'inspired by' wording and follows our content rules.",
     status: "Reviewed against content rules",
     x: [
       "Mon: Most spiritual apps promise you'll feel better in minutes. AIYogi refuses. Depth takes time, and the traditions it draws on never pretended otherwise.",
@@ -98,12 +98,12 @@ window.REPORT = {
 
   tracking: {
     intro:
-      "Every link we post carries a short tag (a UTM) at the end of the web address. When someone clicks, the tag tells Google Analytics which post and channel sent them, so we can say which posts bring real visitors and which don't.",
+      "Every link we post ends with a short tag, called a UTM. When someone clicks, the tag tells Google Analytics which channel and which post sent them. That's how we'll learn which posts bring real visitors.",
     example: "https://aiyogi.ai/?utm_source=x&utm_medium=organic&utm_campaign=2026-10-launch",
     parts: [
-      { tag: "utm_source", means: "Where the click came from (x, linkedin, youtube, reddit, email)" },
-      { tag: "utm_medium", means: "The kind of traffic (organic post, creator, email)" },
-      { tag: "utm_campaign", means: "Which campaign or theme, by month (for example 2026-10-launch)" }
+      { tag: "utm_source", means: "Where the click came from, such as x or linkedin" },
+      { tag: "utm_medium", means: "The kind of traffic, such as an organic post, a creator or an email" },
+      { tag: "utm_campaign", means: "The theme and month, such as 2026-10-launch" }
     ],
     links: [
       { channel: "X", source: "x" },
@@ -113,22 +113,22 @@ window.REPORT = {
       { channel: "Email", source: "email" }
     ],
     status:
-      "Not yet readable on the website side: aiyogi.ai is not recording visits today, so the tags are in place but nothing will show until analytics is connected. Connecting it is on our list for week 3.",
+      "Right now aiyogi.ai isn't recording visits, so the tags are in place but nothing shows yet. Connecting analytics is on our list for week 3.",
     meanwhile:
-      "Until then we read clicks inside each platform: post analytics on X (link clicks) and the LinkedIn Page analytics tab (clicks). Those are reported weekly."
+      "Until then, we read clicks inside X (post analytics) and LinkedIn (Page analytics) and report them weekly."
   },
 
   reddit: {
-    status: "Account not yet created. We will create it with the marketing email.",
+    status: "We haven't created the account yet. It will use the marketing email.",
     principles: [
-      "One clearly branded team account. Affiliation disclosed in every thread.",
-      "Weeks 1-2: comment helpfully with no links, to build standing.",
-      "Weeks 3 onward: about 5 thoughtful replies per week, one link per ten replies at most, and only where it answers the question.",
-      "Read each community's rules first. If a community bans brand accounts, we stay out.",
-      "Never reply on sensitive threads (trauma, addiction, self-harm, sexual topics). Okara's automatic matches are reviewed by a person before anything is posted."
+      "One clearly labelled team account. We say who we are in every thread.",
+      "Weeks 1 and 2: we only comment helpfully, with no links, to earn some standing.",
+      "From week 3: about 5 thoughtful replies a week, with a link in at most one reply in ten, and only when it truly answers the question.",
+      "We read each community's rules first. If brand accounts aren't welcome, we stay out.",
+      "We never reply on sensitive threads such as trauma, addiction, self-harm or sexual topics. A person reviews every thread Okara suggests before we write anything."
     ],
     communities: ["r/Meditation", "r/taoism", "r/Buddhism", "r/nonduality", "r/Dzogchen", "r/Yoga"],
-    measure: "Replies kept (not removed), upvotes, and referral clicks once site analytics works."
+    measure: "Replies that stay up, upvotes, and clicks once analytics is connected."
   },
 
   connections: [
@@ -136,47 +136,47 @@ window.REPORT = {
       group: "Connected",
       state: "done",
       items: [
-        { item: "Okara workspace for aiyogi.ai", note: "Encrypted, AIYogi context loaded" },
-        { item: "Google Search Console", note: "Search data is flowing in" },
-        { item: "X @aiyogi_ai", note: "Drafting and posting" },
+        { item: "Okara workspace for aiyogi.ai", note: "Encrypted, with AIYogi's details loaded" },
+        { item: "Google Search Console", note: "Search data is coming in" },
+        { item: "X @aiyogi_ai", note: "Okara drafts, we review and post" },
         { item: "LinkedIn Page", note: "Posts as the AIYogi Page, not a personal profile" }
       ]
     },
     {
-      group: "Connecting next (our team)",
+      group: "We're connecting next",
       state: "progress",
       items: [
-        { item: "Brand Voice and safety rules", note: "Rewrite so every agent follows the content rules", when: "Mon 12 Oct" },
-        { item: "Article agent", note: "Review content pillars and approve", when: "Tue 13 Oct" },
-        { item: "Reddit agent", note: "Starts once the Reddit account exists. Okara finds threads and drafts replies; a person posts them", when: "Wed 14 Oct" },
-        { item: "Google Analytics (GA4)", note: "Needs a tracking tag on aiyogi.ai first. We will set up and verify it", when: "Week 3" },
-        { item: "Article publishing destination", note: "Articles are drafted in Okara; we choose and connect where they publish", when: "Week 3" },
-        { item: "GitHub (site fixes)", note: "Lets Okara's coding agent hand over SEO fixes as ready-to-apply changes", when: "Week 3" }
+        { item: "Brand voice and content rules", note: "Rewrite so every draft follows our content rules", when: "Mon 12 Oct" },
+        { item: "Article writer", note: "Review its topics and approve them", when: "Tue 13 Oct" },
+        { item: "Reddit", note: "Starts once the Reddit account exists. Okara finds threads and drafts replies, and a person posts them", when: "Wed 14 Oct" },
+        { item: "Google Analytics", note: "Needs a tracking tag on aiyogi.ai first. We'll set it up and check it", when: "Week 3" },
+        { item: "Where articles get published", note: "Okara writes the articles. We'll choose where they go live and connect it", when: "Week 3" },
+        { item: "GitHub", note: "Lets Okara hand us site fixes ready to apply", when: "Week 3" }
       ]
     },
     {
-      group: "Not connectable in Okara (we run these by hand)",
+      group: "Okara can't connect these, so we do them by hand",
       state: "todo",
       items: [
-        { item: "YouTube", note: "Okara has no YouTube connection. The channel is managed in YouTube Studio and thumbnails are designed separately." },
-        { item: "Instagram and TikTok", note: "Okara lists both as coming soon. We can create the profiles and post by hand if you want them." }
+        { item: "YouTube", note: "We manage the channel in YouTube Studio and design thumbnails separately." },
+        { item: "Instagram and TikTok", note: "Okara lists both as coming soon. We can set up profiles and post by hand if you'd like them." }
       ]
     }
   ],
 
   youtube: {
-    status: "Waiting for ownership of the new channel",
+    status: "Waiting on channel ownership",
     plan: [
-      "You grant ownership of the new AIYogi channel.",
+      "You give us ownership of the new AIYogi channel.",
       "We list every video with its current thumbnail and views.",
-      "We design a new thumbnail set in the AIYogi look (dark, gold, no faces of teachers), starting with the most-viewed videos.",
-      "We show a first batch of five. Then we roll out the rest and measure click-through."
+      "We design a new thumbnail set in the AIYogi look: dark, gold, no teachers' faces. We start with the most-viewed videos.",
+      "We show you a first batch of five, then roll out the rest and watch click-through."
     ]
   },
 
   agreement: {
-    hours: "Up to 20 hours per week",
-    note: "Reported by what we deliver, not by timesheets. The split below is the planned maximum, and it can shift week to week.",
+    hours: "Up to 20 hours a week",
+    note: "We report on what we deliver, not on hours. This is the planned maximum, and it can shift from week to week.",
     allocation: [
       ["Content and posting (X, LinkedIn)", "up to 6 h"],
       ["Okara set-up and management", "up to 4 h"],
@@ -186,18 +186,18 @@ window.REPORT = {
       ["Creators and YouTube", "up to 2 h"]
     ],
     out: [
-      "Paid ad spend and management",
-      "App or product development",
-      "Video production shoots",
+      "Paid ads and ad spend",
+      "Building or changing the app",
+      "Video shoots",
       "Press and PR",
-      "Translation checks for all 12 languages",
-      "24/7 community moderation"
+      "Checking translations in all 12 languages",
+      "Round-the-clock community moderation"
     ],
-    change: "New work outside this scope is quoted in writing before it starts."
+    change: "If something falls outside this list, we'll quote it in writing before we start."
   },
 
   schedule: {
-    note: "This dashboard refreshes every Saturday at 12:00 am IST. Times are shown in Florida time.",
+    note: "This page refreshes every Saturday at 12:00 am IST. Times are shown in Florida time.",
     cronUtc: { weekday: 5, hour: 18, minute: 30 } // Friday 18:30 UTC = Saturday 00:00 IST
   }
 };
