@@ -19,7 +19,7 @@ const err = (where, msg) => errors.push(`${where}: ${msg}`);
 const banned = [
   [/—|–/, "em or en dash"],
   [/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u, "emoji"],
-  [/(^|\s)#\w/, "hashtag"],
+  [/(^|\s)#[A-Za-z]/, "hashtag"],
   [/!/, "exclamation mark"],
   [/\b(heal(s|ing|ed)?|cure[sd]?|therap\w+|diagnos\w+|tinnitus|menopause|kundalini crisis|alcohol withdrawal)\b/i, "health claim"],
   [/\b(dalai lama|mantak chia|khenpo gelek|yogi vinod)\b/i, "living teacher named"],
@@ -71,6 +71,17 @@ R.weeks.forEach((w, i) => {
   if (w.northStar) checkMetric(w.northStar, `${at}.northStar`);
   (w.funnel?.stages || []).forEach((m, j) => checkMetric(m, `${at}.funnel.stages[${j}]`));
   (w.channels || []).forEach((c, j) => (c.metrics || []).forEach((m, k) => checkMetric(m, `${at}.channels[${j}].metrics[${k}]`)));
+  (w.reach || []).forEach((p, j) => {
+    const at2 = `${at}.reach[${j}]`;
+    if (!p.title || !p.source) err(at2, "panel needs a title and source");
+    if (!dateOk(p.asOf)) err(at2, "panel needs a valid asOf date");
+    [...(p.bars || []), ...(p.share || [])].forEach((b) => { if (!isNum(b.value)) err(at2, `"${b.label}" needs a numeric value`); });
+    if (p.share) { const sum = p.share.reduce((s, b) => s + b.value, 0); if (Math.abs(sum - 100) > 1) err(at2, `shares add up to ${sum}, not 100`); }
+  });
+  (w.workstreams || []).forEach((g, j) => g.items.forEach((x, k) => {
+    if (!["done", "progress"].includes(x.state)) err(`${at}.workstreams[${j}].items[${k}]`, "state must be done or progress");
+  }));
+  (w.hiccups || []).forEach((x, j) => { if (!x.what || !x.fix) err(`${at}.hiccups[${j}]`, "needs what and fix"); });
   (w.actions || []).forEach((a, j) => {
     if (!["high", "normal"].includes(a.priority)) err(`${at}.actions[${j}]`, "priority must be high or normal");
     if (!a.unblocks) err(`${at}.actions[${j}]`, "say what it unblocks");
