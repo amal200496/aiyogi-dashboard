@@ -25,7 +25,7 @@ window.REPORT = {
       },
       headline: "Nothing needed from you this week.",
       summary:
-        "The blog, the first article and analytics are live, and most YouTube thumbnails are refreshed.",
+        "The blog, the first article and analytics are live, and 29 new YouTube thumbnails are up.",
 
       actions: [],
       decisions: [],
@@ -48,7 +48,7 @@ window.REPORT = {
             { text: "@aiyogi_ai set up on X, with bio and link", state: "done" },
             { text: "AIYogi LinkedIn Page set up", state: "done" },
             { text: "17 posts live on X, two a day", state: "done" },
-            { text: "First LinkedIn Page post published", state: "done" },
+            { text: "2 posts published on the LinkedIn Page", state: "done" },
             { text: "One LinkedIn post every weekday", state: "progress" }
           ]
         },
@@ -56,8 +56,9 @@ window.REPORT = {
           name: "YouTube",
           items: [
             { text: "New channel set up", state: "done" },
-            { text: "New thumbnails on most of the channel's videos", state: "done" },
-            { text: "Thumbnails for the remaining videos", state: "progress" }
+            { text: "29 new thumbnails live on the channel", state: "done" },
+            { text: "2 thumbnails that failed to update, being retried", state: "progress" },
+            { text: "YouTube automation workflow, with a person approving each step", state: "progress" }
           ]
         },
         {
@@ -67,8 +68,7 @@ window.REPORT = {
             { text: "Content rules corrected, so every draft follows them", state: "done" },
             { text: "331 ideas and drafts queued, all reviewed by a person", state: "done" },
             { text: "Article route to the site tested end to end", state: "done" },
-            { text: "Reddit account created", state: "done" },
-            { text: "Automation set-up", state: "progress" }
+            { text: "Reddit account created", state: "done" }
           ]
         }
       ],
@@ -127,13 +127,13 @@ window.REPORT = {
       ],
 
       inProgress: {
-        title: "Automation set-up",
-        text: "Okara drafts on a schedule. A person still reads and approves everything, and auto-publish stays off.",
+        title: "YouTube automation set-up",
+        text: "A person approves every step before anything is published.",
         steps: [
-          { label: "Accounts connected", state: "done" },
-          { label: "Rules locked in", state: "done" },
-          { label: "Drafts queued for review", state: "now" },
-          { label: "Scheduled routines", state: "next" }
+          { label: "Channel and thumbnails ready", state: "done" },
+          { label: "Approval workflow", state: "now" },
+          { label: "First video through it", state: "next" },
+          { label: "More videos", state: "next" }
         ]
       },
 
@@ -145,6 +145,10 @@ window.REPORT = {
         {
           what: "One site publish failed on 14 Oct",
           fix: "It was a host error. The next attempt went through and the blog is live."
+        },
+        {
+          what: "2 of 31 thumbnails failed to upload",
+          fix: "The other 29 are live. We are retrying the two that failed."
         },
         {
           what: "We can't republish the site from our own account yet",
@@ -172,7 +176,7 @@ window.REPORT = {
         },
         {
           name: "LinkedIn",
-          status: "Page live with one post",
+          status: "Page live with two posts",
           metrics: [
             { label: "Followers", value: 0, source: "LinkedIn Page analytics", asOf: "2026-10-21", note: "Our starting point." },
             { label: "Impressions, 30 days", value: 102, source: "LinkedIn Page analytics", asOf: "2026-10-21" }
@@ -195,7 +199,7 @@ window.REPORT = {
         },
         {
           name: "YouTube",
-          status: "New thumbnails on most videos",
+          status: "29 new thumbnails live",
           metrics: []
         },
         {
@@ -211,8 +215,8 @@ window.REPORT = {
         label: "Next week, 26 Oct to 1 Nov",
         days: [
           { day: "Mon 26", date: "2026-10-26", items: ["Next batch of X posts goes out", "LinkedIn weekday posts begin"] },
-          { day: "Tue 27", date: "2026-10-27", items: ["Start helpful Reddit comments, with no links"] },
-          { day: "Wed 28", date: "2026-10-28", items: ["Finish the remaining YouTube thumbnails"] },
+          { day: "Tue 27", date: "2026-10-27", items: ["Start helpful Reddit comments, with no links", "Set up a second guide's account"] },
+          { day: "Wed 28", date: "2026-10-28", items: ["Retry the 2 thumbnails that failed"] },
           { day: "Thu 29", date: "2026-10-29", items: ["Pick and start the next article"] },
           { day: "Fri 30", date: "2026-10-30", items: ["Weekly report and dashboard refresh"] },
           { day: "Sat 31", date: "2026-10-31", items: ["X posts continue"] },
@@ -224,7 +228,7 @@ window.REPORT = {
       expect: {
         see: [
           "Two X posts a day and one LinkedIn post each weekday.",
-          "A second article started, and the remaining thumbnails done.",
+          "A second article started, and the 2 failed thumbnails retried.",
           "Our first helpful Reddit comments, with no promotional links."
         ],
         notYet: [
@@ -270,9 +274,9 @@ window.REPORT = {
       achieved: [
         { when: "Week 4", text: "Blog launched and the first article is live." },
         { when: "Week 4", text: "Analytics live on aiyogi.ai, including blog pages." },
-        { when: "Week 4", text: "New thumbnails on most YouTube videos." },
+        { when: "Week 4", text: "29 new thumbnails live on YouTube." },
         { when: "Week 4", text: "Okara rules corrected, and the Reddit account created." },
-        { when: "Week 3", text: "Scheduled 14 X posts and published a LinkedIn Page post." },
+        { when: "Week 3", text: "Scheduled 14 X posts and published two LinkedIn Page posts." },
         { when: "Week 2", text: "Published our first posts on X and LinkedIn." },
         { when: "Week 2", text: "Okara drafted 331 ideas: 51 X, 48 LinkedIn, 51 article topics, 96 Reddit threads and 85 site fixes." },
         { when: "Week 1", text: "Wrote the 4-month plan, audited aiyogi.ai, and set up Okara, X, LinkedIn and the team email." }
@@ -372,16 +376,7 @@ window.REPORT = {
       ["Strategy and weekly reporting", "up to 3 h"],
       ["Community and Reddit", "up to 2 h"],
       ["Creators and YouTube", "up to 2 h"]
-    ],
-    out: [
-      "Paid ads and ad spend",
-      "Building or changing the app",
-      "Video shoots",
-      "Press and PR",
-      "Checking translations in all 12 languages",
-      "Round-the-clock community moderation"
-    ],
-    change: "If something falls outside this list, we'll quote it in writing before we start."
+    ]
   },
 
   schedule: {

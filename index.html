@@ -495,7 +495,7 @@
       folds.appendChild(fold("How we know who clicked", "Tracked links", [h("p", { style: "color:var(--muted)", text: T.intro }), url, rows(T.parts.map(function (p) { return h("div", { class: "row" }, [h("span", { class: "k", style: "font-family:var(--mono);font-size:0.8125rem", text: p.tag }), h("span", { style: "color:var(--muted);text-align:right;max-width:62%", text: p.means })]); })), h("p", { style: "color:var(--muted)", text: T.status })]));
       folds.appendChild(fold("How we handle Reddit", "Value first", [h("p", { style: "color:var(--muted)", text: R.reddit.status }), bullets(R.reddit.principles), h("p", { class: "sub", text: "Starting with " + R.reddit.communities.join(", ") })]));
       var A = R.agreement;
-      folds.appendChild(fold("How we work together", A.hours, [h("p", { style: "color:var(--muted)", text: A.note }), rows(A.allocation.map(function (a) { return h("div", { class: "row" }, [h("span", { class: "k", text: a[0] }), h("span", { class: "v", text: a[1] })]); })), h("p", { class: "sub", text: "Not included" }), bullets(A.out), h("p", { style: "color:var(--muted)", text: A.change })]));
+      folds.appendChild(fold("How we work together", A.hours, [h("p", { style: "color:var(--muted)", text: A.note }), rows(A.allocation.map(function (a) { return h("div", { class: "row" }, [h("span", { class: "k", text: a[0] }), h("span", { class: "v", text: a[1] })]); }))]));
     }
   }
 
