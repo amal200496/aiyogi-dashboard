@@ -350,7 +350,7 @@
   function metricRow(m) {
     var empty = m.value === null || m.value === undefined;
     var note = empty ? m.note : (m.source ? srcText(m.source, m.asOf) : "");
-    return h("div", { class: "row" }, [h("span", { class: "k" }, [m.label, note ? h("small", { text: note }) : null]), h("span", { class: "v" + (empty ? " empty" : ""), text: empty ? "Not measured yet" : String(m.value) + (m.unit ? " " + m.unit : "") })]);
+    return h("div", { class: "row" }, [h("span", { class: "k" }, [m.label, note ? h("small", { text: note }) : null]), h("span", { class: "v" + (empty ? " empty" : ""), text: empty ? "Not yet measured" : String(m.value) + (m.unit ? " " + m.unit : "") })]);
   }
 
   var weeks = R.weeks, byId = {}; weeks.forEach(function (w) { byId[w.id] = w; });
@@ -361,26 +361,26 @@
   function render(w) {
     app.textContent = "";
     var latest = w === weeks[0], asks = w.actions || [];
-    if (!latest) app.appendChild(h("p", { class: "archive-note", text: "You are viewing an earlier report. Numbers are as they were then." }));
+    if (!latest) app.appendChild(h("p", { class: "archive-note", text: "You are viewing an earlier report. Figures are as they stood at the time." }));
 
     /* Hero */
     var then = w.headline || (asks.length ? (asks.length === 1 ? "One thing we need from you." : asks.length + " things we need from you.") : "Nothing needed from you.");
     var left = h("div", null, [
-      h("p", { class: "hello", text: "Hi " + R.owner + ". " + w.covers + "." }),
+      h("p", { class: "hello", text: "Dear " + R.owner + ", here is your report. " + w.covers + "." }),
       h("h1", null, ["Week " + w.number + " of " + R.campaign.totalWeeks, h("span", { class: "then", text: then })]),
       h("p", { class: "lede", text: w.summary }),
       w.status ? h("div", { class: "status-line" }, [h("span", { class: "pill " + w.status.level }, [h("i"), w.status.label]), h("span", { class: "status-why", text: w.status.text })]) : null
     ]);
     var daysLeft = Math.max(0, Math.round((Date.parse(R.campaign.end) - Date.parse(w.id)) / 86400000));
     var right = h("div", { class: "journey" }, [
-      h("div", { class: "journey-top" }, [h("span", null, [h("b", { class: "num", text: Math.round(progress(w) * 100) + "%" }), " of the climb"]), h("span", { class: "num", text: daysLeft + " days to the summit" })]),
+      h("div", { class: "journey-top" }, [h("span", null, [h("b", { class: "num", text: Math.round(progress(w) * 100) + "%" }), " of the campaign complete"]), h("span", { class: "num", text: daysLeft + " days remaining" })]),
       ridge(w)
     ]);
     app.appendChild(h("div", { class: "hero" }, [left, right]));
 
     /* Anything needed (only shown when there is) */
     if (asks.length) {
-      var sa = section(app, "What we need from you");
+      var sa = section(app, "A request for your attention");
       sa.appendChild(h("div", { class: "bumps" }, asks.map(function (a) { return h("div", { class: "bump" }, [h("span", { class: "ok", style: "background:var(--gold-soft)" }, [ring()]), h("b", { text: a.title }), h("span", { text: a.detail })]); })));
     }
 
@@ -388,7 +388,7 @@
     if (w.workstreams) {
       var all = [], done = 0, prog = 0;
       w.workstreams.forEach(function (g) { g.items.forEach(function (x) { if (x.state === "done") done++; else prog++; }); });
-      var sd = section(app, "Delivered so far", "Open a line to see each item.");
+      var sd = section(app, "Delivered so far", "Please select a line to see each item.");
       var streams = h("div", { class: "streams" });
       w.workstreams.forEach(function (g, gi) {
         var d = g.items.filter(function (x) { return x.state === "done"; }).length;
@@ -402,7 +402,7 @@
         ]));
       });
       sd.appendChild(h("div", { class: "delivered" }, [
-        h("div", { class: "tally" }, [h("span", { class: "big num", text: String(done) }), h("p", { class: "cap" }, [h("b", { text: "things delivered" }), " across " + w.workstreams.length + " workstreams, with " + prog + " more under way."])]),
+        h("div", { class: "tally" }, [h("span", { class: "big num", text: String(done) }), h("p", { class: "cap" }, [h("b", { text: "items delivered" }), " across " + w.workstreams.length + " workstreams, with " + prog + " more in progress."])]),
         streams
       ]));
     } else if (w.achieved) {
@@ -412,13 +412,13 @@
 
     /* Month one, counted */
     if (w.monthCount) {
-      var sc = section(app, "Month one, counted", "Plain counts of what was made and run.");
+      var sc = section(app, "Month one in numbers", "A simple count of what has been produced and run.");
       sc.appendChild(h("ul", { class: "counted" }, w.monthCount.map(function (c) { return h("li", null, [h("b", { class: "num", text: String(c.n) }), h("span", { text: c.label })]); })));
     }
 
     /* Reach */
     if (w.reach) {
-      var sr = section(app, "Early reach", "Three weeks in. Each number shows where it came from.");
+      var sr = section(app, "Early reach", "Three weeks in. Each figure shows its source.");
       var grid = h("div", { class: "reach" });
       w.reach.forEach(function (p) {
         var body = [h("div", { class: "panel-top" }, [h("h3", { text: p.title }), h("span", { class: "per", text: p.period })])];
@@ -447,7 +447,7 @@
     if (w.inProgress || w.hiccups) {
       var pair = h("div", { class: "pair" }), pw = h("div", { class: "pair-wrap" }, [pair]); app.appendChild(pw);
       if (w.inProgress) {
-        var ip = w.inProgress, sp = section(pair, "Under way: " + ip.title.toLowerCase());
+        var ip = w.inProgress, sp = section(pair, "In progress: " + ip.title.toLowerCase());
         var steps = h("ol", { class: "stepper" });
         var reached = 0; ip.steps.forEach(function (x, i) { if (x.state !== "next") reached = i; });
         var fillLine = h("span", { class: "fill", "aria-hidden": "true" }); fillLine.style.width = (reached / (ip.steps.length - 1) * 75) + "%";
@@ -461,7 +461,7 @@
         sp.appendChild(h("p", { class: "why", text: ip.text }));
       }
       if (w.hiccups) {
-        var sh = section(pair, "Bumps we handled");
+        var sh = section(pair, "Challenges we have resolved");
         sh.appendChild(h("div", { class: "bumps" }, w.hiccups.map(function (x) { return h("div", { class: "bump" }, [h("span", { class: "ok" }, [okTick()]), h("b", { text: x.what }), h("span", { text: x.fix })]); })));
       }
     }
@@ -476,7 +476,7 @@
     }
 
     /* Detail, folded */
-    var sm = section(app, "More detail", "Everything else, if you want it.");
+    var sm = section(app, "Further detail", "For your reference, whenever convenient.");
     var folds = h("div", { class: "folds" }); sm.appendChild(folds);
 
     if (w.channels) {
@@ -514,7 +514,7 @@
 
   var foot = $("footer");
   foot.appendChild(h("span", { text: "Last updated " + stamp(updated) + ". Next update " + stamp(nextRefresh(now)) + ". Florida time." }));
-  foot.appendChild(h("span", null, ["Questions? ", h("a", { href: "mailto:" + R.contact, text: R.contact })]));
+  foot.appendChild(h("span", null, ["Questions or feedback? We would be glad to hear from you at ", h("a", { href: "mailto:" + R.contact, text: R.contact })]));
 
   function show(id) { var w = byId[id] || weeks[0]; sel.value = w.id; render(w); }
   show((location.hash || "").replace("#", ""));
