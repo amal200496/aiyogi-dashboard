@@ -73,6 +73,16 @@ window.REPORT = {
         }
       ],
 
+      /* Month one, counted. Plain counts of things made or run; nothing is priced or compared. */
+      monthCount: [
+        { n: 29, label: "YouTube thumbnails designed and live" },
+        { n: 331, label: "post, article, thread and site-fix ideas drafted and reviewed" },
+        { n: 19, label: "posts published on X and LinkedIn" },
+        { n: 1, label: "blog built, with a 2,500 word article live" },
+        { n: 6, label: "tools connected and checked" },
+        { n: 4, label: "platforms set up: X, LinkedIn, YouTube, Reddit" }
+      ],
+
       reach: [
         {
           id: "visits",
@@ -147,6 +157,10 @@ window.REPORT = {
           fix: "It was a host error. The next attempt went through and the blog is live."
         },
         {
+          what: "Connecting Okara to the site, through GitHub, took several tries",
+          fix: "We built a private review copy of the site and tested an article end to end. A person checks every article before it reaches the live site."
+        },
+        {
           what: "2 of 31 thumbnails failed to upload",
           fix: "The other 29 are live. We are retrying the two that failed."
         },
@@ -214,7 +228,7 @@ window.REPORT = {
       next: {
         label: "Next week, 26 Oct to 1 Nov",
         days: [
-          { day: "Mon 26", date: "2026-10-26", items: ["Next batch of X posts goes out", "LinkedIn weekday posts begin"] },
+          { day: "Mon 26", date: "2026-10-26", items: ["Next batch of X posts goes out", "LinkedIn weekday posts begin", "Monthly invoice sent"] },
           { day: "Tue 27", date: "2026-10-27", items: ["Start helpful Reddit comments, with no links", "Set up a second guide's account"] },
           { day: "Wed 28", date: "2026-10-28", items: ["Retry the 2 thumbnails that failed"] },
           { day: "Thu 29", date: "2026-10-29", items: ["Pick and start the next article"] },
@@ -368,6 +382,7 @@ window.REPORT = {
 
   agreement: {
     hours: "Up to 20 hours a week",
+    billing: "We send the $500 invoice on the last Monday of each month. Once it is processed, payments usually take 2 to 3 days to show in our account.",
     note: "We report on what we deliver, not on hours. This is the planned maximum, and it can shift from week to week.",
     allocation: [
       ["Content and posting (X, LinkedIn)", "up to 6 h"],

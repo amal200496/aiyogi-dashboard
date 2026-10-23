@@ -140,6 +140,13 @@
   .items .later { display: inline-block; margin-left: 8px; font-size: 0.75rem; color: var(--gold-ink); background: var(--gold-soft); border-radius: 999px; padding: 1px 8px; vertical-align: 1px; }
   @keyframes grow { from { transform: scaleX(0); } }
 
+  /* Month one, counted */
+  .counted { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line); }
+  .counted li { display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .counted b { font-size: 1.75rem; line-height: 1; font-weight: 640; letter-spacing: -0.03em; color: var(--gold-ink); text-align: right; }
+  .counted span { color: var(--muted); max-width: 40ch; }
+  @media (min-width: 720px) { .counted { grid-template-columns: 1fr 1fr; column-gap: 48px; } }
+
   /* Reach */
   .reach { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
@@ -403,6 +410,12 @@
       sd2.appendChild(h("div", { class: "streams" }, [h("ul", { class: "items", style: "padding:16px 18px" }, w.achieved.map(function (x) { return h("li", null, [tick(), h("span", { text: x.text })]); }))]));
     }
 
+    /* Month one, counted */
+    if (w.monthCount) {
+      var sc = section(app, "Month one, counted", "Plain counts of what was made and run.");
+      sc.appendChild(h("ul", { class: "counted" }, w.monthCount.map(function (c) { return h("li", null, [h("b", { class: "num", text: String(c.n) }), h("span", { text: c.label })]); })));
+    }
+
     /* Reach */
     if (w.reach) {
       var sr = section(app, "Early reach", "Three weeks in. Each number shows where it came from.");
@@ -495,7 +508,7 @@
       folds.appendChild(fold("How we know who clicked", "Tracked links", [h("p", { style: "color:var(--muted)", text: T.intro }), url, rows(T.parts.map(function (p) { return h("div", { class: "row" }, [h("span", { class: "k", style: "font-family:var(--mono);font-size:0.8125rem", text: p.tag }), h("span", { style: "color:var(--muted);text-align:right;max-width:62%", text: p.means })]); })), h("p", { style: "color:var(--muted)", text: T.status })]));
       folds.appendChild(fold("How we handle Reddit", "Value first", [h("p", { style: "color:var(--muted)", text: R.reddit.status }), bullets(R.reddit.principles), h("p", { class: "sub", text: "Starting with " + R.reddit.communities.join(", ") })]));
       var A = R.agreement;
-      folds.appendChild(fold("How we work together", A.hours, [h("p", { style: "color:var(--muted)", text: A.note }), rows(A.allocation.map(function (a) { return h("div", { class: "row" }, [h("span", { class: "k", text: a[0] }), h("span", { class: "v", text: a[1] })]); }))]));
+      folds.appendChild(fold("How we work together", A.hours, [h("p", { style: "color:var(--muted)", text: A.note }), A.billing ? h("p", { style: "color:var(--muted)", text: A.billing }) : null, rows(A.allocation.map(function (a) { return h("div", { class: "row" }, [h("span", { class: "k", text: a[0] }), h("span", { class: "v", text: a[1] })]); }))]));
     }
   }
 
